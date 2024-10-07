@@ -11,7 +11,7 @@ app = FastAPI()
 async def download(url: str, quality: str):
     response = await helper.download(url, quality)
     print(response)
-    status = response
+    status = response["status"]
     if status == 400:
         response_json = {
             "status": 400,

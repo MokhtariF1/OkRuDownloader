@@ -78,11 +78,11 @@ async def msg(event):
             response_status = response.get("status")
             print(response_status)
             if response_status != 200:
-                await bot.delete_messages(user_id, dn.msg_id)
+                await bot.delete_messages(user_id, dn.id)
                 await conv.send_message(bot_text["error"])
                 return
             else:
-                await bot.edit_message(user_id, dn.msg_id, bot_text["uploading"])
+                await bot.edit_message(user_id, dn.id, bot_text["uploading"])
                 path = response["path"]
                 await event.reply(str(path).split("/")[1], file=path)
 

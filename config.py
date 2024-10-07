@@ -8,7 +8,7 @@ quality = ["mobile", "lowest", "low", "sd", "hd"]
 bot_token = "7329039379:AAG23YfiezKPCt6xXetDD5iGKNZ9qPB0FAk"
 api_id = 28482138
 api_hash = "cdcd9c0f111f85feaafac50d1bc3d6a5"
-proxy = True
+proxy = False
 proxy_address = ("socks5", "127.0.0.1", 2080)
 api_address = "http://127.0.0.1:8001/"
 
