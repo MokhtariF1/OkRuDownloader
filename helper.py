@@ -83,9 +83,9 @@ async def download(url, quality):
                 await page.goto(download_url)
             except:
                 pass
-            page.on('download', lambda download: print(f'Download started: {download.path}'))
+            #page.on('download', lambda download: print(f'Download started: {download.path}'))
         
-        download = download_info.value
+        download = await download_info.value
         download_path = f"files/{download.suggested_filename}"
         await download.save_as(download_path)
         
