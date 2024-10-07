@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import Response
 import helper
 import json
 
@@ -16,17 +17,17 @@ async def download(url: str, quality: str):
             "status": 400,
             "message": "quality error!",
         }
-        return json.dumps(response_json)
+        return Response(json.dumps(response_json), 400)
     elif status == 200:
         response_json = {
             "status": 200,
             "message": "video downloaded!",
             "path": response["path"],
         }
-        return json.dumps(response_json)
+        return Response(json.dumps(response_json), 200)
     else:
         response_json = {
             "status": 500,
             "message": "error in download!",
         }
-        return json.dumps(response_json)
+        return Response(json.dumps(response_json), 500)
