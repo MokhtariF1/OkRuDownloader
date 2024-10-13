@@ -86,7 +86,7 @@ async def msg(event):
             # await bot.edit_message(user_id, dn.id, bot_text["uploading"])
             # path = response["path"]
             # await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb=hints.FileLike("t.png"))
-            await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb=hints.FileLike("t.png"))
+            await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb=hints.FileLike("t.png"))
 
 
 bot.run_until_disconnected()
