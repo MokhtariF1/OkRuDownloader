@@ -2,7 +2,8 @@ from telethon import TelegramClient, events, Button, hints
 import config
 from telethon.tl.types import DocumentAttributeVideo
 import requests
-
+import pyrogram
+from utils import Mdata01, Mdata02, Mdata03
 
 
 if config.proxy is False:
@@ -16,8 +17,9 @@ else:
 print("connecting...")
 print(proxy)
 bot = TelegramClient("bot", config.api_id, config.api_hash, proxy=proxy)
-
+pybot = pyrogram.Client("pybot", config.api_id, config.api_hash, bot_token=config.bot_token, proxy=proxy)
 bot.start(bot_token=config.bot_token)
+pybot.start()
 
 print("connected!")
 
@@ -88,7 +90,24 @@ async def msg(event):
             #     path = response["path"]
             #     print(path)
             #     await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
-            await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(1200, 1200, 0, supports_streaming=True, preload_prefix_size=1000),))
-
+            # await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(1200, 1200, 0, supports_streaming=True, preload_prefix_size=1000),))
+            width, height, duration = await Mdata01("arso-eh.mp4")
+            await pybot.send_video(
+                chat_id=user_id,
+                video="arso-eh.mp4",
+                thumb="t.png",
+                caption="description",
+                duration=duration,
+                width=width,
+                height=height,
+                supports_streaming=True,
+                # reply_to_message_id=update.message.reply_to_message.id,
+                # progress=progress_for_pyrogram,
+                # progress_args=(
+                #     Translation.UPLOAD_START,
+                #     update.message,
+                #     start_time,
+                # ),
+            )
 
 bot.run_until_disconnected()
