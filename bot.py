@@ -89,6 +89,7 @@ async def msg(event):
                 await bot.edit_message(user_id, dn.id, bot_text["uploading"])
                 path = response["path"]
                 width, height, duration = await Mdata01(path)
+                print(width)
                 await pybot.send_video(
                     chat_id=user_id,
                     video=path,
