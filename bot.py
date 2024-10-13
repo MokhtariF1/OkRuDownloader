@@ -71,24 +71,24 @@ async def msg(event):
                 ],
             ]
             await conv.send_message(bot_text["select_quality"], buttons=keys)
-            quality = await conv.wait_event(events.CallbackQuery())
-            quality = quality.data.decode()
-            url = config.api_address + f"download?url={get_url.raw_text}&quality={quality}"
-            dn = await conv.send_message(bot_text["downloading"])
-            response = requests.post(url)
-            response = response.json()
-            response_status = response.get("status")
-            print(response_status)
-            if response_status != 200:
-                await bot.delete_messages(user_id, dn.id)
-                await conv.send_message(bot_text["error"])
-                return
-            else:
-                await bot.edit_message(user_id, dn.id, bot_text["uploading"])
-                path = response["path"]
-                print(path)
-                await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 0, 0),))
-            # await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 0, 0),))
+            # quality = await conv.wait_event(events.CallbackQuery())
+            # quality = quality.data.decode()
+            # url = config.api_address + f"download?url={get_url.raw_text}&quality={quality}"
+            # dn = await conv.send_message(bot_text["downloading"])
+            # response = requests.post(url)
+            # response = response.json()
+            # response_status = response.get("status")
+            # print(response_status)
+            # if response_status != 200:
+            #     await bot.delete_messages(user_id, dn.id)
+            #     await conv.send_message(bot_text["error"])
+            #     return
+            # else:
+            #     await bot.edit_message(user_id, dn.id, bot_text["uploading"])
+            #     path = response["path"]
+            #     print(path)
+            #     await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
+            await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
 
 
 bot.run_until_disconnected()
