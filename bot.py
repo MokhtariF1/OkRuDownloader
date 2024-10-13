@@ -86,6 +86,7 @@ async def msg(event):
             else:
                 await bot.edit_message(user_id, dn.id, bot_text["uploading"])
                 path = response["path"]
+                print(path)
                 await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb=hints.FileLike("t.png"), attributes=(DocumentAttributeVideo(0, 0, 0),))
             # await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 0, 0),))
 
