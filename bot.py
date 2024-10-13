@@ -1,6 +1,7 @@
-from telethon import TelegramClient, events, Button
+from telethon import TelegramClient, events, Button, hints
 import config
 import requests
+
 
 
 if config.proxy is False:
@@ -84,7 +85,7 @@ async def msg(event):
             else:
                 await bot.edit_message(user_id, dn.id, bot_text["uploading"])
                 path = response["path"]
-                await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True)
+                await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb=hints.FileLike("t.png"))
 
 
 bot.run_until_disconnected()
