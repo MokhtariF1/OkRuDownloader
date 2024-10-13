@@ -73,41 +73,39 @@ async def msg(event):
                 ],
             ]
             await conv.send_message(bot_text["select_quality"], buttons=keys)
-            # quality = await conv.wait_event(events.CallbackQuery())
-            # quality = quality.data.decode()
-            # url = config.api_address + f"download?url={get_url.raw_text}&quality={quality}"
-            # dn = await conv.send_message(bot_text["downloading"])
-            # response = requests.post(url)
-            # response = response.json()
-            # response_status = response.get("status")
-            # print(response_status)
-            # if response_status != 200:
-            #     await bot.delete_messages(user_id, dn.id)
-            #     await conv.send_message(bot_text["error"])
-            #     return
-            # else:
-            #     await bot.edit_message(user_id, dn.id, bot_text["uploading"])
-            #     path = response["path"]
-            #     print(path)
-            #     await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
+            quality = await conv.wait_event(events.CallbackQuery())
+            quality = quality.data.decode()
+            url = config.api_address + f"download?url={get_url.raw_text}&quality={quality}"
+            dn = await conv.send_message(bot_text["downloading"])
+            response = requests.post(url)
+            response = response.json()
+            response_status = response.get("status")
+            print(response_status)
+            if response_status != 200:
+                await bot.delete_messages(user_id, dn.id)
+                await conv.send_message(bot_text["error"])
+                return
+            else:
+                await bot.edit_message(user_id, dn.id, bot_text["uploading"])
+                path = response["path"]
+                width, height, duration = await Mdata01(path)
+                await pybot.send_video(
+                    chat_id=user_id,
+                    video=path,
+                    thumb="t.png",
+                    caption=str(path).split("/")[1],
+                    duration=duration,
+                    width=width,
+                    height=height,
+                    supports_streaming=True,
+                    # reply_to_message_id=update.message.reply_to_message.id,
+                    # progress=progress_for_pyrogram,
+                    # progress_args=(
+                    #     Translation.UPLOAD_START,
+                    #     update.message,
+                    #     start_time,
+                    # ),
+                )
             # await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(1200, 1200, 0, supports_streaming=True, preload_prefix_size=1000),))
-            width, height, duration = await Mdata01("arso-eh.mp4")
-            await pybot.send_video(
-                chat_id=user_id,
-                video="arso-eh.mp4",
-                thumb="t.png",
-                caption="description",
-                duration=duration,
-                width=width,
-                height=height,
-                supports_streaming=True,
-                # reply_to_message_id=update.message.reply_to_message.id,
-                # progress=progress_for_pyrogram,
-                # progress_args=(
-                #     Translation.UPLOAD_START,
-                #     update.message,
-                #     start_time,
-                # ),
-            )
 
 bot.run_until_disconnected()
