@@ -88,7 +88,7 @@ async def msg(event):
             #     path = response["path"]
             #     print(path)
             #     await bot.send_file(user_id, caption=str(path).split("/")[1], file=path, supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
-            await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(0, 1200, 0),))
+            await bot.send_file(user_id, caption="arso-eh.mp4", file="arso-eh.mp4", supports_streaming=True, thumb="t.png", attributes=(DocumentAttributeVideo(1200, 1200, 0, supports_streaming=True, preload_prefix_size=1000),))
 
 
 bot.run_until_disconnected()
