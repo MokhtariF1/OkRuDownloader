@@ -99,4 +99,4 @@ async def download(url, quality):
         # print(f"File downloaded as: {download.suggested_filename}")
         #
         # await context.close()
-        return {"status": 200, "message": "downloaded", "code": 1, "path": f"{file_name}.%(ext)s"}
+        return {"status": 200, "message": "downloaded", "code": 1, "path": f"{file_name}.webm"}
