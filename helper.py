@@ -72,9 +72,9 @@ async def download(url, quality):
         video_url = url
         custom_quality = f"bestvideo[height<={quality}]+bestaudio/best"
         file_name = f"{int(time.time())}"
-        command = f'yt-dlp -f "{custom_quality}" -o "files/{file_name}.%(ext)s" {video_url}'
-        subprocess.call(command, shell=True)
-
+        command = f'yt-dlp -f "{custom_quality}" -o "files/{file_name}.%(ext)s" {video_url} --format mp4'
+        t = subprocess.call(command, shell=True)
+        print("tttttttt", t)
         # browser = await p.chromium.launch(headless=True)
         # context = await browser.new_context(accept_downloads=True)
         # page = await context.new_page()
@@ -99,4 +99,4 @@ async def download(url, quality):
         # print(f"File downloaded as: {download.suggested_filename}")
         #
         # await context.close()
-        return {"status": 200, "message": "downloaded", "code": 1, "path": f"{file_name}.webm"}
+        return {"status": 200, "message": "downloaded", "code": 1, "path": f"{file_name}.mp4"}
