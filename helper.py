@@ -72,7 +72,7 @@ async def download(url, quality):
         video_url = url
         custom_quality = f"bestvideo[height<={quality}]+bestaudio/best"
         file_name = f"{int(time.time())}"
-        command = f'yt-dlp -f "{custom_quality}" -o "{file_name}.mp4" {video_url}'
+        command = f'yt-dlp -f "{custom_quality}" -o "files/{file_name}.mp4" {video_url}'
         subprocess.call(command, shell=True)
 
         # browser = await p.chromium.launch(headless=True)
