@@ -1,7 +1,7 @@
 # from playwright.sync_api import sync_playwright
 # import config
 # import json
-
+from idlelib.pyshell import capture_warnings
 
 # def download(url, quality):
 #     with sync_playwright() as p:
@@ -72,9 +72,9 @@ async def download(url, quality):
         video_url = url
         custom_quality = f"bestvideo[height<={quality}]+bestaudio/best"
         file_name = f"{int(time.time())}"
-        command = f'yt-dlp -f "{custom_quality}" -o "files/{file_name}.%(ext)s" {video_url} --format mp4'
-        t = subprocess.call(command, shell=True)
-        print("tttttttt", t)
+        command = 'yt-dlp -f "{custom_quality}" -o "files/{file_name}.%(ext)s" {video_url} --format mp4'
+        output = subprocess.check_output(command, shell=True, text=True)
+        print("tttt", output)
         # browser = await p.chromium.launch(headless=True)
         # context = await browser.new_context(accept_downloads=True)
         # page = await context.new_page()
