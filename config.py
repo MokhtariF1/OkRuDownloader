@@ -5,7 +5,7 @@ low = "https://snapsave.cc/wp-content/plugins/aio-video-downloader/download.php?
 sd = "https://snapsave.cc/wp-content/plugins/aio-video-downloader/download.php?source=odnoklassniki&media=Mw=="
 hd = "https://snapsave.cc/wp-content/plugins/aio-video-downloader/download.php?source=odnoklassniki&media=NA=="
 quality = ["mobile", "lowest", "low", "sd", "hd"]
-bot_token = "7329039379:AAG23YfiezKPCt6xXetDD5iGKNZ9qPB0FAk"
+bot_token = "6383493043:AAG3I_ZMgdNQw97BR78r_EtBH55xtI5frLY"
 api_id = 28482138
 api_hash = "cdcd9c0f111f85feaafac50d1bc3d6a5"
 proxy = False
